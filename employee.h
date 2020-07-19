@@ -43,3 +43,4 @@ void displayDeductions(double, double);
 int askToRepeatProgram(char, int, int);
 char getChoiceToRepeat(char);
 char askToViewBinaryFile(char);
+int validateChoiceInput(char*, int);

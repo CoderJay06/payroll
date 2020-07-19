@@ -34,3 +34,39 @@ Gross pay: $396.00
 Net Pay: $255.42
 Federal tax deduction: $110.88
 Social security deduction: $29.70
+
+Employee name: bo
+Employee hourly rate: $12.00
+Employee hours worked: 13
+Regular pay: $156.00
+Overtime pay: $0.00
+
+Employee name: mike
+Employee hourly rate: $14.00
+Employee hours worked: 44
+Regular pay: $612.00
+Overtime pay: $84.00
+
+bo's Pay record calculations: 
+Gross pay: $156.00
+Net Pay: $100.62
+Federal tax deduction: $43.68
+Social security deduction: $11.70
+
+mike's Pay record calculations: 
+Gross pay: $696.00
+Net Pay: $448.92
+Federal tax deduction: $194.88
+Social security deduction: $52.20
+
+Employee name: John Mason
+Employee hourly rate: $12.00
+Employee hours worked: 33
+Regular pay: $396.00
+Overtime pay: $0.00
+
+John Mason's Pay record calculations: 
+Gross pay: $396.00
+Net Pay: $255.42
+Federal tax deduction: $110.88
+Social security deduction: $29.70

@@ -131,16 +131,38 @@ int askToRepeatProgram(char choice, int employeeCount, int numEmployees) {
 } // end askToRepeatProgram
 
 char getChoiceToRepeat(char choice) {
-   printf("\nDo you want to repeat the Payroll Program? Y/N\n");
-   scanf("%c", &choice); FLUSH;
-   return toupper(choice);
+   int validateInput = 0;
+   while (validateInput == 0) {
+      printf("\nDo you want to repeat the Payroll Program? Y/N\n");
+      scanf("%c", &choice); FLUSH;
+      choice = toupper(choice);
+      validateInput = validateChoiceInput(&choice, validateInput);
+   }
+    return choice;
 } // end getChoiceToRepeat
 
 char askToViewBinaryFile(char choice) {
-   printf("\nWould you like to view employee .bin file? Y/N\n");
-   scanf("%c", &choice); FLUSH;
-   return toupper(choice);
+   int validateInput;
+
+   validateInput = 0;
+   while (validateInput == 0) {
+      printf("\nWould you like to view employee .bin file? Y/N\n");
+      scanf("%c", &choice); FLUSH;
+      choice = toupper(choice);
+      validateInput = validateChoiceInput(&choice, validateInput);
+   }
+   return choice;
 } // end askToViewBinaryFile
+
+int validateChoiceInput(char *choice, int validateInput) {
+
+    if ( (*choice == 'Y') || (*choice == 'N') )
+        validateInput = 1;
+    else
+        printf("Invalid choice please enter Y/N...\n");
+
+    return validateInput;
+}
 
 void getEmployeeInfo(EMPLOYEE** employee, int numEmployees) {
     // get and store employee information
