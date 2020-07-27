@@ -1,0 +1,24 @@
+
+Employee name: Bob Jones
+Employee hourly rate: $12.00
+Employee hours worked: 44
+Regular pay: $524.00
+Overtime pay: $72.00
+
+Employee name: Mike Jones
+Employee hourly rate: $12.00
+Employee hours worked: 33
+Regular pay: $396.00
+Overtime pay: $0.00
+
+Bob Jones's Pay record calculations: 
+Gross pay: $596.00
+Net Pay: $384.42
+Federal tax deduction: $166.88
+Social security deduction: $44.70
+
+Mike Jones's Pay record calculations: 
+Gross pay: $396.00
+Net Pay: $255.42
+Federal tax deduction: $110.88
+Social security deduction: $29.70

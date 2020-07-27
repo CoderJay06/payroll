@@ -190,6 +190,27 @@ int getNumEmployees(int numEmployees) {
     return numEmployees;
 } // end getNumEmployees
 
+void addPayRecord(EMPLOYEE* employee, double hourlyRate, int hoursWorked, int numEmployees) {
+    double regularPay, overtimePay, grossPay, fedTaxDeduct, socialSecDeduct,
+    netPay;
+
+    // make all payroll calculations and deductions
+    regularPay = calculateRegPay(employee->hourlyRate, employee->hoursWorked);
+    overtimePay = calculateOTpay(employee->hourlyRate, employee->hoursWorked);
+    grossPay = calculateGrossPay(regularPay, overtimePay);
+    fedTaxDeduct = calculateFedTaxDeduct(grossPay);
+    socialSecDeduct = calculateSocialSecDeduct(grossPay);
+    netPay = calculateNetPay(grossPay, fedTaxDeduct, socialSecDeduct);
+
+    // add payroll calculations and deductions to files
+    addCalculationsToTxtFile(employee, grossPay, netPay, fedTaxDeduct, socialSecDeduct);
+    addCalculationsToBinFile(employee, grossPay, netPay, fedTaxDeduct, socialSecDeduct);
+    
+    // output payroll calculations and deductions 
+    displayPayCalculations(regularPay, overtimePay, grossPay, netPay);
+    displayDeductions(fedTaxDeduct, socialSecDeduct);
+} // end addPayRecord
+
 void displayEmployee(EMPLOYEE* employee, int numEmployees) {
     printf("\n---------------------------------\n");
     printf("\nEmployee Name: %s", employee->name);
@@ -216,34 +237,6 @@ void displayDeductions(double fedTaxDeduct, double socialSecDeduct) {
     printf("\nFederal tax deduction: $%.2lf", fedTaxDeduct);
     printf("\nSocial security deduction: $%.2lf", socialSecDeduct);
 } // end displayDeductions
-
-void addPayRecord(EMPLOYEE* employee, double hourlyRate, int hoursWorked, int numEmployees) {
-    double regularPay, overtimePay, grossPay, fedTaxDeduct, socialSecDeduct,
-    netPay;
-
-    // make all payroll calculations and deductions
-    regularPay = calculateRegPay(employee->hourlyRate, employee->hoursWorked);
-    overtimePay = calculateOTpay(employee->hourlyRate, employee->hoursWorked);
-    grossPay = calculateGrossPay(regularPay, overtimePay);
-    fedTaxDeduct = calculateFedTaxDeduct(grossPay);
-    socialSecDeduct = calculateSocialSecDeduct(grossPay);
-    netPay = calculateNetPay(grossPay, fedTaxDeduct, socialSecDeduct);
-
-    // add payroll calculations and deductions to files
-    addCalculationsToTxtFile(employee, grossPay, netPay, fedTaxDeduct, socialSecDeduct);
-    addCalculationsToBinFile(employee, grossPay, netPay, fedTaxDeduct, socialSecDeduct);
-    
-    // output payroll calculations and deductions 
-    displayPayCalculations(regularPay, overtimePay, grossPay, netPay);
-    displayDeductions(fedTaxDeduct, socialSecDeduct);
-} // end addPayRecord
-
-void checkIfFileIsNull(FILE* file) {
-    if (file == NULL) {
-        printf("Error opening this file...Exiting\n");
-        exit(-1); // Hard exit
-   }
-} // end checkIfFileIsNull
 
 void addEmployeeToTxtFile(EMPLOYEE** employees, int numEmployees) {
     FILE* employeeFilePtr;
@@ -375,7 +368,6 @@ void readFromPayrollTxtFile() {
         printf("%c", reader);
     }
     fclose(payrollFilePtr);
-
 } // end readFromPayrollTxtFile
 
 void readFromPayrollBinFile(int numEmployees) {
@@ -455,6 +447,13 @@ double calculateNetPay(double grossPay, double fedTaxDeduct, double socialSecDed
 
     return netPayResult;
 } // end calculateNetPay
+
+void checkIfFileIsNull(FILE* file) {
+    if (file == NULL) {
+        printf("Error opening this file...Exiting\n");
+        exit(-1); // Hard exit
+   }
+} // end checkIfFileIsNull
 
 void checkMemory(EMPLOYEE** employee) {
     if (employee == NULL) {
